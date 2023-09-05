@@ -11,7 +11,7 @@
   font-weight: 100;
 }
 
-.todo-list {
+.todo-list-container {
   background-color: rgb(255 255 255);
   min-width: 400px;
   display: flex;
@@ -28,7 +28,6 @@
           0 20px 0 -10px rgb(239 239 239),
             /* The third layer shadow */
           0 20px 1px -9px rgb(0 0 0 / 15%);
-  padding: 2rem 0;
   margin-bottom: 12px;
 }
 
@@ -36,6 +35,17 @@
   border-bottom: 1px solid rgb(128 128 128 / 20%);
 }
 
-.todo-item:first-child {
-  border-top: 1px solid rgb(128 128 128 / 20%);
+.form,
+.btns-panel {
+  padding: 0 0.75rem;
+}
+
+.btns-panel {
+  display: flex;
+  justify-content: space-between;
+
+  &_main {
+    display: flex;
+    column-gap: 1.25rem;
+  }
 }
