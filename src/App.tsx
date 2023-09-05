@@ -1,7 +1,11 @@
+import { Layout } from "./components/Layout/Layout";
+import { ToDoList } from "./components/ToDoList/ToDoList";
+import "./index.scss";
+
 export function App() {
   return (
-    <div>
-      Init
-    </div>
+    <Layout>
+      <ToDoList />
+    </Layout>
   );
 }
