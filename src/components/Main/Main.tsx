@@ -3,6 +3,7 @@ import classes from "./main.module.scss";
 import { Button, ButtonTheme } from "../../shared/ui/Button/Button";
 import { ToDoList } from "../ToDoList/ToDoList";
 import { ToDo } from "../../models/ToDo";
+import { nanoid } from "nanoid"
 
 export function Main() {
   const [inputValue, setInputValue] = useState("");
@@ -11,7 +12,7 @@ export function Main() {
 
   function formHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    addToDo({id : inputValue, title: inputValue, isCompleted: false})
+    addToDo({id : nanoid(), title: inputValue, isCompleted: false})
     setInputValue("");
   }
 

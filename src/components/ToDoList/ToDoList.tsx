@@ -21,7 +21,7 @@ export function ToDoList({ currentList, list, setList }: ToDoListProps) {
       {list.map((item) => {
         if (currentList === "all") {
           return (
-            <li className={classes["todo-item"]}>
+            <li key={item.id} className={classes["todo-item"]}>
               <ToDoItem todo={item} ChangeState={ChangeState}/>
             </li>
           )
@@ -29,7 +29,7 @@ export function ToDoList({ currentList, list, setList }: ToDoListProps) {
 
         if (currentList === "active" && item.isCompleted === false) {
           return (
-            <li className={classes["todo-item"]}>
+            <li key={item.id} className={classes["todo-item"]}>
               <ToDoItem todo={item} ChangeState={ChangeState}/>
             </li>
           )
@@ -37,7 +37,7 @@ export function ToDoList({ currentList, list, setList }: ToDoListProps) {
 
         if (currentList === "completed" && item.isCompleted === true) {
           return (
-            <li className={classes["todo-item"]}>
+            <li key={item.id} className={classes["todo-item"]}>
               <ToDoItem todo={item} ChangeState={ChangeState}/>
             </li>
           )
