@@ -1,25 +1,20 @@
-import { useState } from "react";
 import classes from "./toDoItem.module.scss";
-import { toDo } from "src/models/toDo";
+import { ToDo } from "../../models/ToDo";
+
 
 interface ToDoItemProps {
-  todo: toDo;
+  todo: ToDo;
   ChangeState: (toDoId: string) => void;
 }
 
 export function ToDoItem({ todo, ChangeState }: ToDoItemProps) {
-  const [isCompleted, setIsCompleted] = useState(todo.isCompleted)
-
   return (
-    <label htmlFor={todo.title} className={classes.toDo}>
+    <label htmlFor={todo.id} className={classes.toDo}>
       <input
-        checked={isCompleted}
+        checked={todo.isCompleted}
         type="checkbox"
         id={todo.id}
         name={todo.title}
-        onClick={() => {
-          setIsCompleted(prev => !prev)
-        }}
         onChange={() => {
           ChangeState(todo.id)
         }}

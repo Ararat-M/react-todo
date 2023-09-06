@@ -1,11 +1,11 @@
 import { Layout } from "./components/Layout/Layout";
-import { ToDoList } from "./components/ToDoList/ToDoList";
+import { Main } from "./components/Main/Main";
 import "./index.scss";
 
 export function App() {
   return (
     <Layout>
-      <ToDoList />
+      <Main />
     </Layout>
   );
 }
