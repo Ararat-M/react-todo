@@ -70,6 +70,7 @@ export function Main() {
           </div>
 
           <Button
+            data-testid="btnClear"
             theme={ButtonTheme.CLEAR}
             onClick={clearCompleted}
           >

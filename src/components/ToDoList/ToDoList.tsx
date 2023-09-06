@@ -29,7 +29,7 @@ export function ToDoList({ currentList, list, setList }: ToDoListProps) {
 
         if (currentList === "active" && item.isCompleted === false) {
           return (
-            <li key={item.id} className={classes["todo-item"]}>
+            <li data-testid="toDoItem" key={item.id} className={classes["todo-item"]}>
               <ToDoItem todo={item} ChangeState={ChangeState}/>
             </li>
           )
@@ -37,7 +37,7 @@ export function ToDoList({ currentList, list, setList }: ToDoListProps) {
 
         if (currentList === "completed" && item.isCompleted === true) {
           return (
-            <li key={item.id} className={classes["todo-item"]}>
+            <li data-testid="toDoItem" key={item.id} className={classes["todo-item"]}>
               <ToDoItem todo={item} ChangeState={ChangeState}/>
             </li>
           )
