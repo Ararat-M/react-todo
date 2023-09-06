@@ -29,8 +29,8 @@ export function Main() {
     <div className={classes.container}>
       <h1 className={classes["title"]}>todos</h1>
       <div className={classes["card"]}>
-        <form className={classes.form} onSubmit={formHandler}>
-          <input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
+        <form data-testid="form" className={classes.form} onSubmit={formHandler}>
+          <input data-testid="input" type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
         </form>
 
         <div>
@@ -43,21 +43,24 @@ export function Main() {
           </span>
 
           <div className={classes["btns-panel_main"]}>
-            <Button 
+            <Button
+              data-testid="btnAll"
               theme={ButtonTheme.CLEAR}
               isActive={currentList === "all"}
               onClick={() => setCurrentList("all")}
             >
               All
             </Button>
-            <Button 
+            <Button
+              data-testid="btnActive"
               theme={ButtonTheme.CLEAR}
               isActive={currentList === "active"}
               onClick={() => setCurrentList("active")}
             > 
               Active
             </Button>
-            <Button 
+            <Button
+              data-testid="btnCompleted"
               theme={ButtonTheme.CLEAR}
               isActive={currentList === "completed"}
               onClick={() => setCurrentList("completed")}

@@ -17,11 +17,11 @@ export function ToDoList({ currentList, list, setList }: ToDoListProps) {
   }
 
   return (
-    <ul className={classes.list}>
+    <ul data-testid="list" className={classes.list}>
       {list.map((item) => {
         if (currentList === "all") {
           return (
-            <li key={item.id} className={classes["todo-item"]}>
+            <li data-testid="toDoItem" key={item.id} className={classes["todo-item"]}>
               <ToDoItem todo={item} ChangeState={ChangeState}/>
             </li>
           )

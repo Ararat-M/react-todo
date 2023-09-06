@@ -11,6 +11,7 @@ export function ToDoItem({ todo, ChangeState }: ToDoItemProps) {
   return (
     <label htmlFor={todo.id} className={classes.toDo}>
       <input
+        data-testid="checkbox"
         checked={todo.isCompleted}
         type="checkbox"
         id={todo.id}
@@ -19,7 +20,7 @@ export function ToDoItem({ todo, ChangeState }: ToDoItemProps) {
           ChangeState(todo.id)
         }}
       />
-      <span>{todo.title}</span>
+      <span data-testid="toDoTitle">{todo.title}</span>
     </label>
   );
 }

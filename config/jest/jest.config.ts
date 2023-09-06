@@ -1,4 +1,4 @@
-import type {Config} from 'jest';
+import type { Config } from "jest";
 
 const config: Config = {
   moduleNameMapper: {
@@ -27,7 +27,8 @@ const config: Config = {
   testEnvironment: "jsdom",
   testMatch: [
     "<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)"
-  ]
+  ],
+  setupFilesAfterEnv: ["<rootDir>config/jest/setupTests.ts"]
 };
 
 export default config;
