@@ -1,13 +1,13 @@
 import { type PayloadAction, createSlice } from "@reduxjs/toolkit";
-import type { ToDo } from "../types/ToDo";
+import type { ToDoSchema } from "../types/ToDoSchema";
 
-const initialState: ToDo[] = [];
+const initialState: ToDoSchema[] = [];
 
-export const toDoSlice = createSlice({
-    name: "toDo",
+export const toDoListSlice = createSlice({
+    name: "toDoList",
     initialState,
     reducers: {
-        addToDo: (state, action: PayloadAction<ToDo>) => {
+        addToDo: (state, action: PayloadAction<ToDoSchema>) => {
             state.push(action.payload);
         },
         clearCompleted: (state) => {
@@ -22,5 +22,5 @@ export const toDoSlice = createSlice({
     }
 });
 
-export const { actions: toDoActions } = toDoSlice;
-export const { reducer: toDoReducer } = toDoSlice;
+export const { actions: toDoListActions } = toDoListSlice;
+export const { reducer: toDoListReducer } = toDoListSlice;

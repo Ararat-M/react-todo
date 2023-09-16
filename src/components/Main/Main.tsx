@@ -1,10 +1,10 @@
 import { useState } from "react";
 import classes from "./main.module.scss";
 import { Button, ButtonTheme } from "shared/ui/Button/Button";
-import { ToDoList } from "../ToDoList/ToDoList";
+import { ToDoList } from "components/ToDoList";
 import { nanoid } from "nanoid"
 import { useDispatch, useSelector} from "react-redux";
-import { getToDoList, toDoActions } from "models/ToDo";
+import {getToDoList, toDoListActions} from "components/ToDoList/model";
 
 export function Main() {
   const [inputValue, setInputValue] = useState("");
@@ -14,12 +14,12 @@ export function Main() {
 
   function formHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    dispatch(toDoActions.addToDo({id: nanoid(), isCompleted: false, title: inputValue}))
+    dispatch(toDoListActions.addToDo({id: nanoid(), isCompleted: false, title: inputValue}))
     setInputValue("");
   }
 
   function clearCompleted() {
-    dispatch(toDoActions.clearCompleted());
+    dispatch(toDoListActions.clearCompleted());
     if (currentList === "completed") setCurrentList("all");
   }
 

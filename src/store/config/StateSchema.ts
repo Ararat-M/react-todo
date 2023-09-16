@@ -1,5 +1,5 @@
-import { ToDo } from "models/ToDo/types/ToDo";
+import { ToDoSchema } from "components/ToDoList/model";
 
 export interface StateSchema {
-    toDo: ToDo[];
+    toDoList: ToDoSchema[];
 }

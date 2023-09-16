@@ -1,11 +1,10 @@
 import classes from "./toDoItem.module.scss";
-import { ToDo } from "models/ToDo/types/ToDo";
-import {useDispatch} from "react-redux";
-import {toDoActions} from "models/ToDo";
+import { useDispatch } from "react-redux";
+import { toDoListActions, ToDoSchema } from "../model";
 
 
 interface ToDoItemProps {
-  todo: ToDo;
+  todo: ToDoSchema;
 }
 
 export function ToDoItem({ todo }: ToDoItemProps) {
@@ -19,7 +18,7 @@ export function ToDoItem({ todo }: ToDoItemProps) {
         type="checkbox"
         id={todo.id}
         name={todo.title}
-        onChange={() => {dispatch(toDoActions.changeState(todo.id))}}
+        onChange={() => {dispatch(toDoListActions.changeState(todo.id))}}
       />
       <span data-testid="toDoTitle">{todo.title}</span>
     </label>

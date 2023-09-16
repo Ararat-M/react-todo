@@ -1,16 +1,14 @@
 import { fireEvent, render, screen } from "@testing-library/react"
 import { Main } from "./Main";
-import { StoreProvider } from "store";
-import {ToDo} from "models/ToDo";
+import { StoreProvider, type StateSchema } from "store";
 import { DeepPartial } from "@reduxjs/toolkit";
-import {StateSchema} from "store/config/StateSchema";
 
 jest.mock("nanoid", () => { return { nanoid: () => Math.floor(Math.random() * 1000) } })
 
 describe("Main", () => {
   beforeEach(() => {
     const initialState: DeepPartial<StateSchema> = {
-      toDo: [
+      toDoList: [
         {
           title: "new task",
           id: "1",

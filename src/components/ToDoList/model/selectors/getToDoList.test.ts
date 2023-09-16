@@ -5,7 +5,7 @@ import type { StateSchema } from "store/config/StateSchema";
 describe("getToDoList", () => {
     test("should return toDo list", () => {
         const state: DeepPartial<StateSchema> = {
-            toDo: [
+            toDoList: [
                 {
                     title: "new task",
                     id: "1",

@@ -1,10 +1,10 @@
-import { ToDoItem } from "components/ToDoItem/ToDoItem";
+import { ToDoItem } from "./ToDoItem";
 import classes from "./toDoList.module.scss";
-import { ToDo } from "models/ToDo/types/ToDo";
+import { ToDoSchema } from "./model";
 
 interface ToDoListProps {
   currentList: string;
-  list: ToDo[];
+  list: ToDoSchema[];
 }
 
 export function ToDoList({ currentList, list }: ToDoListProps) {
