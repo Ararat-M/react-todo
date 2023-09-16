@@ -23,39 +23,3 @@ button {
   border: none;
   cursor: pointer;
 }
-
-/* custom checkbox */
-input[type="checkbox"] {
-  margin-right: 6px;
-  cursor: pointer;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background: none;
-  height: 1.5rem;
-  width: 1.5rem;
-  outline: 1px solid rgb(128 128 128 / 40%);
-  border-radius: 50%;
-  color: white;
-
-    &:checked {
-      outline: 1px solid rgb(169, 227, 115);
-    }
-
-    &:after {
-      content: ' ';
-      position: relative;
-      left: 40%;
-      top: 20%;
-      width: 15%;
-      height: 40%;
-      border: solid rgb(169, 227, 115);
-      border-width: 0 2px 2px 0;
-      transform: rotate(40deg);
-      display: none;
-    }
-
-    &:checked:after {
-      display: block;
-    }
-}

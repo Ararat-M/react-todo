@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react"
+import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import { Main } from "./Main";
 import { StoreProvider, type StateSchema } from "store";
 import { DeepPartial } from "@reduxjs/toolkit";
@@ -35,7 +35,7 @@ describe("Main", () => {
   })
 
   describe("ToDo", () => {
-    test("add ToDo", () => {
+    test("add ToDo", async () => {
       const toDoItemElement = screen.getAllByTestId("toDoItem");
       const toDoTitleElement = screen.getAllByTestId("toDoTitle");
 
@@ -62,35 +62,33 @@ describe("Main", () => {
       fireEvent.click(inputCheckboxElement[2]);
     })
 
-    test("render list \"all\"", () => {
+    test("render list \"all\"", async () => {
       const btnElement = screen.getByTestId("btnAll");
       fireEvent.click(btnElement);
 
       const toDoItemElement = screen.getAllByTestId("toDoItem");
-      expect(toDoItemElement.length).toBe(3)
+      expect(toDoItemElement.length).toBe(3);
     })
 
-    test("render list \"active\"", () => {
+    test("render list \"active\"", async () => {
       const btnElement = screen.getByTestId("btnActive");
       fireEvent.click(btnElement);
 
-      const toDoItemElement = screen.getAllByTestId("toDoItem");
-      expect(toDoItemElement.length).toBe(1)
+      await waitFor(() => expect(screen.getAllByTestId("toDoItem").length).toBe(1))
     })
 
-    test("render list \"completed\"", () => {
+    test("render list \"completed\"", async () => {
       const btnElement = screen.getByTestId("btnCompleted");
       fireEvent.click(btnElement);
 
-      const toDoItemElement = screen.getAllByTestId("toDoItem");
-      expect(toDoItemElement.length).toBe(2)
+      await waitFor(() => expect(screen.getAllByTestId("toDoItem").length).toBe(2))
     })
 
-    test("use button \"clear completed\"", () => {
+    test("use button \"clear completed\"", async () => {
       const btnElementClear = screen.getByTestId("btnClear");
       fireEvent.click(btnElementClear);
-
-      expect(screen.getAllByTestId("toDoItem").length).toBe(1)
+      
+      await waitFor(() => expect(screen.getAllByTestId("toDoItem").length).toBe(1))
     })
   });
 })

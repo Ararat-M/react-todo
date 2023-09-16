@@ -19,7 +19,7 @@ describe("userSlice", () => {
     test("addToDo", () => {
         expect(
             toDoListReducer(state as ToDoSchema[], toDoListActions.addToDo({ title: "new task 3", id: "3", isCompleted: false }))
-        ).toEqual([...state, { title: "new task 3", id: "3", isCompleted: false }]);
+        ).toEqual([{ title: "new task 3", id: "3", isCompleted: false }, ...state]);
     });
 
     test("clearCompleted", () => {
