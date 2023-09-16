@@ -1,27 +1,25 @@
 import { useState } from "react";
 import classes from "./main.module.scss";
-import { Button, ButtonTheme } from "../../shared/ui/Button/Button";
+import { Button, ButtonTheme } from "shared/ui/Button/Button";
 import { ToDoList } from "../ToDoList/ToDoList";
-import { ToDo } from "../../models/ToDo";
 import { nanoid } from "nanoid"
+import { useDispatch, useSelector} from "react-redux";
+import { getToDoList, toDoActions } from "models/ToDo";
 
 export function Main() {
   const [inputValue, setInputValue] = useState("");
-  const [toDoList, setToDoList] = useState<ToDo[]>([]);
   const [currentList, setCurrentList] = useState("all");
+  const toDoList = useSelector(getToDoList);
+  const dispatch = useDispatch();
 
   function formHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    addToDo({id : nanoid(), title: inputValue, isCompleted: false})
+    dispatch(toDoActions.addToDo({id: nanoid(), isCompleted: false, title: inputValue}))
     setInputValue("");
   }
 
-  function addToDo(toDo: ToDo) {
-    setToDoList([...toDoList, toDo]);
-  }
-
   function clearCompleted() {
-    setToDoList(toDoList.filter((item) => !item.isCompleted));
+    dispatch(toDoActions.clearCompleted());
     if (currentList === "completed") setCurrentList("all");
   }
 
@@ -34,12 +32,12 @@ export function Main() {
         </form>
 
         <div>
-          <ToDoList currentList={currentList} list={toDoList} setList={setToDoList}/>
+          <ToDoList currentList={currentList} list={toDoList}/>
         </div>
 
         <div className={classes["btns-panel"]}>
           <span>
-            {toDoList.filter((item) => item.isCompleted === false).length} active
+            {toDoList.filter((item) => !item.isCompleted).length} active
           </span>
 
           <div className={classes["btns-panel_main"]}>
@@ -56,7 +54,7 @@ export function Main() {
               theme={ButtonTheme.CLEAR}
               isActive={currentList === "active"}
               onClick={() => setCurrentList("active")}
-            > 
+            >
               Active
             </Button>
             <Button

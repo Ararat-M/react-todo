@@ -1,44 +1,36 @@
-import { ToDoItem } from "../ToDoItem/ToDoItem";
+import { ToDoItem } from "components/ToDoItem/ToDoItem";
 import classes from "./toDoList.module.scss";
-import { ToDo } from "../../models/ToDo";
+import { ToDo } from "models/ToDo/types/ToDo";
 
 interface ToDoListProps {
   currentList: string;
   list: ToDo[];
-  setList: React.Dispatch<React.SetStateAction<ToDo[]>>;
 }
 
-export function ToDoList({ currentList, list, setList }: ToDoListProps) {
-  function ChangeState(toDoId: string) {
-    setList(list.map((item) => {
-      if (toDoId === item.id) item.isCompleted = !item.isCompleted;
-      return item
-    }))
-  }
-
+export function ToDoList({ currentList, list }: ToDoListProps) {
   return (
     <ul data-testid="list" className={classes.list}>
       {list.map((item) => {
         if (currentList === "all") {
           return (
             <li data-testid="toDoItem" key={item.id} className={classes["todo-item"]}>
-              <ToDoItem todo={item} ChangeState={ChangeState}/>
+              <ToDoItem todo={item}/>
             </li>
           )
         }
 
-        if (currentList === "active" && item.isCompleted === false) {
+        if (currentList === "active" && !item.isCompleted) {
           return (
             <li data-testid="toDoItem" key={item.id} className={classes["todo-item"]}>
-              <ToDoItem todo={item} ChangeState={ChangeState}/>
+              <ToDoItem todo={item}/>
             </li>
           )
         }
 
-        if (currentList === "completed" && item.isCompleted === true) {
+        if (currentList === "completed" && item.isCompleted) {
           return (
             <li data-testid="toDoItem" key={item.id} className={classes["todo-item"]}>
-              <ToDoItem todo={item} ChangeState={ChangeState}/>
+              <ToDoItem todo={item}/>
             </li>
           )
         }

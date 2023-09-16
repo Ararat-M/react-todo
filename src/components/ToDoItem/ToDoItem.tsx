@@ -1,13 +1,16 @@
 import classes from "./toDoItem.module.scss";
-import { ToDo } from "../../models/ToDo";
+import { ToDo } from "models/ToDo/types/ToDo";
+import {useDispatch} from "react-redux";
+import {toDoActions} from "models/ToDo";
 
 
 interface ToDoItemProps {
   todo: ToDo;
-  ChangeState: (toDoId: string) => void;
 }
 
-export function ToDoItem({ todo, ChangeState }: ToDoItemProps) {
+export function ToDoItem({ todo }: ToDoItemProps) {
+  const dispatch = useDispatch();
+
   return (
     <label htmlFor={todo.id} className={classes.toDo}>
       <input
@@ -16,9 +19,7 @@ export function ToDoItem({ todo, ChangeState }: ToDoItemProps) {
         type="checkbox"
         id={todo.id}
         name={todo.title}
-        onChange={() => {
-          ChangeState(todo.id)
-        }}
+        onChange={() => {dispatch(toDoActions.changeState(todo.id))}}
       />
       <span data-testid="toDoTitle">{todo.title}</span>
     </label>
