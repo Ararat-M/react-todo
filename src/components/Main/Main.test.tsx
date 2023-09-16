@@ -1,28 +1,39 @@
 import { fireEvent, render, screen } from "@testing-library/react"
 import { Main } from "./Main";
 import { StoreProvider } from "store";
+import {ToDo} from "models/ToDo";
+import { DeepPartial } from "@reduxjs/toolkit";
+import {StateSchema} from "store/config/StateSchema";
 
 jest.mock("nanoid", () => { return { nanoid: () => Math.floor(Math.random() * 1000) } })
 
 describe("Main", () => {
   beforeEach(() => {
+    const initialState: DeepPartial<StateSchema> = {
+      toDo: [
+        {
+          title: "new task",
+          id: "1",
+          isCompleted: false
+        },
+        {
+          title: "new task 2",
+          id: "2",
+          isCompleted: false
+        },
+        {
+          title: "new task 3",
+          id: "3",
+          isCompleted: false
+        }
+      ]
+    }
+
     render(
-        <StoreProvider>
+        <StoreProvider initialState={initialState}>
           <Main />
         </StoreProvider>
     )
-
-    const inputElement = screen.getByTestId("input");
-    const formElement = screen.getByTestId("form");
-
-    fireEvent.change(inputElement, {target: {value: "new task"}});
-    fireEvent.submit(formElement);
-
-    fireEvent.change(inputElement, {target: {value: "new task 2"}});
-    fireEvent.submit(formElement);
-
-    fireEvent.change(inputElement, {target: {value: "new task 3"}});
-    fireEvent.submit(formElement);
   })
 
   describe("ToDo", () => {
@@ -38,9 +49,9 @@ describe("Main", () => {
       const inputCheckboxElement = screen.getAllByTestId("checkbox");
 
       expect(inputCheckboxElement[0]).not.toBeChecked();
-
       fireEvent.click(inputCheckboxElement[0]);
       expect(inputCheckboxElement[0]).toBeChecked();
+
       expect(inputCheckboxElement[1]).not.toBeChecked();
     })
   });
@@ -79,8 +90,8 @@ describe("Main", () => {
 
     test("use button \"clear completed\"", () => {
       const btnElementClear = screen.getByTestId("btnClear");
-
       fireEvent.click(btnElementClear);
+
       expect(screen.getAllByTestId("toDoItem").length).toBe(1)
     })
   });

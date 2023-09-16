@@ -36,7 +36,7 @@ export function Main() {
         </div>
 
         <div className={classes["btns-panel"]}>
-          <span>
+          <span data-testid="activeCounter">
             {toDoList.filter((item) => !item.isCompleted).length} active
           </span>
 
