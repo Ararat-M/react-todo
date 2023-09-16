@@ -8,7 +8,7 @@ export const toDoListSlice = createSlice({
     initialState,
     reducers: {
         addToDo: (state, action: PayloadAction<ToDoSchema>) => {
-            state.push(action.payload);
+            state.unshift(action.payload);
         },
         clearCompleted: (state) => {
             return state.filter(item => !item.isCompleted)

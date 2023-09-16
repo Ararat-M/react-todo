@@ -1,6 +1,8 @@
 import classes from "./toDoItem.module.scss";
+import { ToDoSchema } from "../model/types/ToDoSchema";
 import { useDispatch } from "react-redux";
-import { toDoListActions, ToDoSchema } from "../model";
+import { toDoListActions } from "../model";
+import { motion } from "framer-motion";
 
 
 interface ToDoItemProps {
@@ -20,7 +22,15 @@ export function ToDoItem({ todo }: ToDoItemProps) {
         name={todo.title}
         onChange={() => {dispatch(toDoListActions.changeState(todo.id))}}
       />
-      <span data-testid="toDoTitle">{todo.title}</span>
+        <motion.label
+            animate={{
+                x: todo.isCompleted ? -2 : 0,
+                opacity: todo.isCompleted ? 0.5 : 1,
+                textDecorationLine: todo.isCompleted ? "line-through" : "none",
+            }}
+        >
+            <span data-testid="toDoTitle">{todo.title}</span>
+        </motion.label>
     </label>
   );
 }
