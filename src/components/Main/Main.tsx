@@ -5,17 +5,24 @@ import { ToDoList } from "components/ToDoList";
 import { nanoid } from "nanoid"
 import { useDispatch, useSelector} from "react-redux";
 import {getToDoList, toDoListActions} from "components/ToDoList/model";
+import {Input} from "shared/ui/Input/Input";
 
 export function Main() {
   const [inputValue, setInputValue] = useState("");
   const [currentList, setCurrentList] = useState("all");
+
   const toDoList = useSelector(getToDoList);
   const dispatch = useDispatch();
 
   function formHandler(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    dispatch(toDoListActions.addToDo({id: nanoid(), isCompleted: false, title: inputValue}))
+    const value = inputValue.trim();
+
+    if (!value) return
+
+    dispatch(toDoListActions.addToDo({id: nanoid(), isCompleted: false, title: value}))
     setInputValue("");
+
   }
 
   function clearCompleted() {
@@ -28,7 +35,12 @@ export function Main() {
       <h1 className={classes["title"]}>todos</h1>
       <div className={classes["card"]}>
         <form data-testid="form" className={classes.form} onSubmit={formHandler}>
-          <input data-testid="inputForm" type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
+          <Input
+              testId="inputForm"
+              type="text"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+          />
         </form>
 
         <div>
