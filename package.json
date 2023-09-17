@@ -6,7 +6,7 @@
   "scripts": {
     "build:dev": "webpack --env mode=development",
     "build:prod": "webpack --env mode=production",
-    "dev": "webpack serve --env mode=development",
+    "start": "webpack serve --env mode=development",
     "unit": "jest --config ./config/jest/jest.config.ts"
   },
   "keywords": [],

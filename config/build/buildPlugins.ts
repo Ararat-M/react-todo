@@ -6,7 +6,7 @@ import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 export default function buildPlugins(isDev: boolean): WebpackPluginInstance[]  {
   const plugins = [
     new HtmlWebpackPlugin({
-      template: "./src/index.html"
+      template: "./public/index.html"
     }),
     new ProgressPlugin(),
     new MiniCssExtractPlugin()
