@@ -17,15 +17,16 @@ export function Checkbox({label, ...props}: CheckboxProps) {
                 name={props.name}
                 onChange={props.onChange}
             />
-            <motion.label
+            <motion.span
+                data-testid="toDoLabel"
                 animate={{
                     x: props.checked ? -2 : 0,
                     opacity: props.checked ? 0.5 : 1,
                     textDecorationLine: props.checked ? "line-through" : "none",
                 }}
             >
-                <span data-testid="toDoTitle">{label}</span>
-            </motion.label>
+                {label}
+            </motion.span>
         </label>
     )
 }

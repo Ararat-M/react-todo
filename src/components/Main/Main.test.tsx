@@ -36,11 +36,16 @@ describe("Main", () => {
 
   describe("ToDo", () => {
     test("add ToDo", async () => {
-      const toDoItemElement = screen.getAllByTestId("toDoItem");
-      const toDoTitleElement = screen.getAllByTestId("toDoTitle");
+      const inputForm = screen.getByTestId("inputForm");
 
+      fireEvent.change(inputForm, {target: {value: "created task"}});
+      fireEvent.submit(screen.getByTestId("form"));
+
+      const toDoItemElement = screen.getAllByTestId("toDoItem");
       expect(toDoItemElement[0]).toBeInTheDocument();
-      expect(toDoTitleElement[0]).toHaveTextContent("new task");
+
+      const toDoLabelElement = screen.getAllByTestId("toDoLabel");
+      expect(toDoLabelElement[0]).toHaveTextContent("created task");
     })
 
     test("change state ToDo", () => {
@@ -87,7 +92,7 @@ describe("Main", () => {
     test("use button \"clear completed\"", async () => {
       const btnElementClear = screen.getByTestId("btnClear");
       fireEvent.click(btnElementClear);
-      
+
       await waitFor(() => expect(screen.getAllByTestId("toDoItem").length).toBe(1))
     })
   });

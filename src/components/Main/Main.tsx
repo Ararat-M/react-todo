@@ -28,7 +28,7 @@ export function Main() {
       <h1 className={classes["title"]}>todos</h1>
       <div className={classes["card"]}>
         <form data-testid="form" className={classes.form} onSubmit={formHandler}>
-          <input data-testid="input" type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
+          <input data-testid="inputForm" type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
         </form>
 
         <div>
@@ -36,8 +36,8 @@ export function Main() {
         </div>
 
         <div className={classes["btns-panel"]}>
-          <span data-testid="activeCounter">
-            {toDoList.filter((item) => !item.isCompleted).length} active
+          <span>
+            {toDoList.filter((item) => !item.isCompleted).length} items left
           </span>
 
           <div className={classes["btns-panel_main"]}>
