@@ -2,7 +2,7 @@ import { useState } from "react";
 import classes from "./main.module.scss";
 import { Button, ButtonTheme } from "shared/ui/Button/Button";
 import { ToDoList } from "components/ToDoList";
-import { nanoid } from "nanoid"
+import { nanoid } from "nanoid";
 import { useDispatch, useSelector } from "react-redux";
 import { getToDoList, toDoListActions } from "components/ToDoList/model";
 import { Input } from "shared/ui/Input/Input";
@@ -19,11 +19,10 @@ export function Main() {
     e.preventDefault();
     const value = inputValue.trim();
 
-    if (!value) return
+    if (!value) return;
 
-    dispatch(toDoListActions.addToDo({id: nanoid(), isCompleted: false, title: value}))
+    dispatch(toDoListActions.addToDo({ id: nanoid(), isCompleted: false, title: value }));
     setInputValue("");
-
   }
 
   function clearCompleted() {
@@ -33,18 +32,18 @@ export function Main() {
 
   return (
     <div className={classes.container}>
-      <h1 className={classes["title"]}>todos</h1>
-      <div className={classes["card"]}>
+      <h1 className={classes.title}>todos</h1>
+      <div className={classes.card}>
         <form data-testid="form" className={classes.form} onSubmit={formHandler}>
           <div className={classes["form-icon"]}>
             <ArrowDown/>
           </div>
           <Input
-              testId="inputForm"
-              type="text"
-              value={inputValue}
-              placeholder={"What needs to be done?"}
-              onChange={(e) => setInputValue(e.target.value)}
+            testId="inputForm"
+            type="text"
+            value={inputValue}
+            placeholder={"What needs to be done?"}
+            onChange={(e) => { setInputValue(e.target.value); }}
           />
         </form>
 
@@ -62,7 +61,7 @@ export function Main() {
               data-testid="btnAll"
               theme={ButtonTheme.CLEAR}
               isActive={currentList === "all"}
-              onClick={() => setCurrentList("all")}
+              onClick={() => { setCurrentList("all"); }}
             >
               All
             </Button>
@@ -70,7 +69,7 @@ export function Main() {
               data-testid="btnActive"
               theme={ButtonTheme.CLEAR}
               isActive={currentList === "active"}
-              onClick={() => setCurrentList("active")}
+              onClick={() => { setCurrentList("active"); }}
             >
               Active
             </Button>
@@ -78,7 +77,7 @@ export function Main() {
               data-testid="btnCompleted"
               theme={ButtonTheme.CLEAR}
               isActive={currentList === "completed"}
-              onClick={() => setCurrentList("completed")}
+              onClick={() => { setCurrentList("completed"); }}
             >
               Completed
             </Button>

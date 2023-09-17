@@ -3,7 +3,7 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 
-export default function buildPlugins(isDev: boolean): WebpackPluginInstance[]  {
+export default function buildPlugins(isDev: boolean): WebpackPluginInstance[] {
   const plugins = [
     new HtmlWebpackPlugin({
       template: "./public/index.html"

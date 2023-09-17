@@ -1,9 +1,9 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react"
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { Main } from "./Main";
 import { StoreProvider, type StateSchema } from "store";
-import { DeepPartial } from "@reduxjs/toolkit";
+import { type DeepPartial } from "@reduxjs/toolkit";
 
-jest.mock("nanoid", () => { return { nanoid: () => Math.floor(Math.random() * 1000) } })
+jest.mock("nanoid", () => { return { nanoid: () => Math.floor(Math.random() * 1000) }; });
 
 describe("Main", () => {
   beforeEach(() => {
@@ -25,20 +25,20 @@ describe("Main", () => {
           isCompleted: false
         }
       ]
-    }
+    };
 
     render(
-        <StoreProvider initialState={initialState}>
-          <Main />
-        </StoreProvider>
-    )
-  })
+      <StoreProvider initialState={initialState}>
+        <Main />
+      </StoreProvider>
+    );
+  });
 
   describe("ToDo", () => {
     test("add ToDo", async () => {
       const inputForm = screen.getByTestId("inputForm");
 
-      fireEvent.change(inputForm, {target: {value: "created task"}});
+      fireEvent.change(inputForm, { target: { value: "created task" } });
       fireEvent.submit(screen.getByTestId("form"));
 
       const toDoItemElement = screen.getAllByTestId("toDoItem");
@@ -46,7 +46,7 @@ describe("Main", () => {
 
       const toDoLabelElement = screen.getAllByTestId("toDoLabel");
       expect(toDoLabelElement[0]).toHaveTextContent("created task");
-    })
+    });
 
     test("change state ToDo", () => {
       const inputCheckboxElement = screen.getAllByTestId("checkbox");
@@ -56,7 +56,7 @@ describe("Main", () => {
       expect(inputCheckboxElement[0]).toBeChecked();
 
       expect(inputCheckboxElement[1]).not.toBeChecked();
-    })
+    });
   });
 
   describe("Rendering different lists", () => {
@@ -65,7 +65,7 @@ describe("Main", () => {
 
       fireEvent.click(inputCheckboxElement[0]);
       fireEvent.click(inputCheckboxElement[2]);
-    })
+    });
 
     test("render list \"all\"", async () => {
       const btnElement = screen.getByTestId("btnAll");
@@ -73,27 +73,27 @@ describe("Main", () => {
 
       const toDoItemElement = screen.getAllByTestId("toDoItem");
       expect(toDoItemElement.length).toBe(3);
-    })
+    });
 
     test("render list \"active\"", async () => {
       const btnElement = screen.getByTestId("btnActive");
       fireEvent.click(btnElement);
 
-      await waitFor(() => expect(screen.getAllByTestId("toDoItem").length).toBe(1))
-    })
+      await waitFor(() => { expect(screen.getAllByTestId("toDoItem").length).toBe(1); });
+    });
 
     test("render list \"completed\"", async () => {
       const btnElement = screen.getByTestId("btnCompleted");
       fireEvent.click(btnElement);
 
-      await waitFor(() => expect(screen.getAllByTestId("toDoItem").length).toBe(2))
-    })
+      await waitFor(() => { expect(screen.getAllByTestId("toDoItem").length).toBe(2); });
+    });
 
     test("use button \"clear completed\"", async () => {
       const btnElementClear = screen.getByTestId("btnClear");
       fireEvent.click(btnElementClear);
 
-      await waitFor(() => expect(screen.getAllByTestId("toDoItem").length).toBe(1))
-    })
+      await waitFor(() => { expect(screen.getAllByTestId("toDoItem").length).toBe(1); });
+    });
   });
-})
+});

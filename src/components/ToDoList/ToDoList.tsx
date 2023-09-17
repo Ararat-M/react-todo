@@ -1,7 +1,7 @@
 import { ToDoItem } from "./ToDoItem";
 import classes from "./toDoList.module.scss";
-import { ToDoSchema } from "./model";
-import {AnimatePresence, motion} from "framer-motion";
+import { type ToDoSchema } from "./model";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface ToDoListProps {
   currentList: string;
@@ -29,15 +29,15 @@ export function ToDoList({ currentList, list }: ToDoListProps) {
       <AnimatePresence>
         {list.map((item) => {
           if (currentList === "all") {
-            return CreateAnimateItem(item)
+            return CreateAnimateItem(item);
           }
 
           if (currentList === "active" && !item.isCompleted) {
-            return CreateAnimateItem(item)
+            return CreateAnimateItem(item);
           }
 
           if (currentList === "completed" && item.isCompleted) {
-            return CreateAnimateItem(item)
+            return CreateAnimateItem(item);
           }
         })}
       </AnimatePresence>
