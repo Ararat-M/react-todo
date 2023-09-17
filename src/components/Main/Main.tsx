@@ -3,9 +3,10 @@ import classes from "./main.module.scss";
 import { Button, ButtonTheme } from "shared/ui/Button/Button";
 import { ToDoList } from "components/ToDoList";
 import { nanoid } from "nanoid"
-import { useDispatch, useSelector} from "react-redux";
-import {getToDoList, toDoListActions} from "components/ToDoList/model";
-import {Input} from "shared/ui/Input/Input";
+import { useDispatch, useSelector } from "react-redux";
+import { getToDoList, toDoListActions } from "components/ToDoList/model";
+import { Input } from "shared/ui/Input/Input";
+import { ArrowDown } from "shared/assets/icons/ArrowDown";
 
 export function Main() {
   const [inputValue, setInputValue] = useState("");
@@ -35,10 +36,14 @@ export function Main() {
       <h1 className={classes["title"]}>todos</h1>
       <div className={classes["card"]}>
         <form data-testid="form" className={classes.form} onSubmit={formHandler}>
+          <div className={classes["form-icon"]}>
+            <ArrowDown/>
+          </div>
           <Input
               testId="inputForm"
               type="text"
               value={inputValue}
+              placeholder={"What needs to be done?"}
               onChange={(e) => setInputValue(e.target.value)}
           />
         </form>
@@ -47,12 +52,12 @@ export function Main() {
           <ToDoList currentList={currentList} list={toDoList}/>
         </div>
 
-        <div className={classes["btns-panel"]}>
+        <div className={classes["btn-panel"]}>
           <span>
             {toDoList.filter((item) => !item.isCompleted).length} items left
           </span>
 
-          <div className={classes["btns-panel_main"]}>
+          <div className={classes["btn-panel_main"]}>
             <Button
               data-testid="btnAll"
               theme={ButtonTheme.CLEAR}

@@ -1,17 +1,16 @@
 .input {
     background-color: transparent;
-    font-size: 16px;
-    font-weight: 400;
+    font-size: 20px;
+    font-weight: 100;
     width: 100%;
     color: #344054;
     border: none;
-    padding: 10px 14px;
+    padding: 1rem 0;
 }
 
 .input::placeholder {
-    font-size: 16px;
-    font-weight: 400;
-    color: #667085;
+    font: inherit;
+    color: rgb(230 230 230);
 }
 
 .input:focus {

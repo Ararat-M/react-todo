@@ -8,6 +8,11 @@ export default function buildLoaders(isDev: boolean): RuleSetRule[] {
     use: ["babel-loader"]
   };
 
+  const svgLoader = {
+    test: /\.svg$/,
+    use: ["@svgr/webpack"]
+  };
+
   const sassLoader = styleLoader(isDev);
 
   const typeScriptLoader: RuleSetRule = {
@@ -19,6 +24,7 @@ export default function buildLoaders(isDev: boolean): RuleSetRule[] {
   return [
     babelLoader,
     typeScriptLoader,
+    svgLoader,
     sassLoader
   ];
 }
